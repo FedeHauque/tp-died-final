@@ -74,6 +74,18 @@ public class MenuPrincipal extends JFrame {
             frame.dispose();
         }
         
+    });  
+    
+    buscarPorDatos.addActionListener(new ActionListener()
+    {
+        
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e)
+        {
+            BuscarMaterial b = new BuscarMaterial();
+            frame.dispose();
+        }
+        
     });
-    }   
+    }
 }
