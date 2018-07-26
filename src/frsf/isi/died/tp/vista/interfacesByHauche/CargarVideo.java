@@ -2,8 +2,13 @@ package frsf.isi.died.tp.vista.interfacesByHauche;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,11 +19,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import frsf.isi.died.tp.modelo.BibliotecaList;
+import frsf.isi.died.tp.modelo.productos.Relevancia;
+import frsf.isi.died.tp.modelo.productos.Video;
+
 public class CargarVideo extends JFrame {
 	private JPanel panel;
     private JLabel block;
     private JLabel idL, tituloL,calificacionL,costoL, fechaL, relevanciaL, duracionL,temaL;
-    private JTextField tituloTF, costoTF, calificacionTF, duracionTF;
+    private JTextField idTF, tituloTF, costoTF, calificacionTF, duracionTF;
     private JComboBox temaTF, relevanciaTF;
     private JFormattedTextField fechaTF;
     private JButton aceptar;
@@ -35,7 +44,14 @@ public class CargarVideo extends JFrame {
         panel.setVisible(true);
         panel.setLayout(new BoxLayout (panel, BoxLayout.Y_AXIS));
         
-        panel.add(idL = new JLabel("ID del Libro = 6896"));
+        panel.add(new JLabel(" "));
+        
+        panel.add(idL = new JLabel("ID"));
+        panel.add(idTF = new JTextField());
+        idTF.setAlignmentX(LEFT_ALIGNMENT);
+        idTF.setMaximumSize(new Dimension(300,25));
+
+        
         panel.add(new JLabel(" "));
         
         panel.add(tituloL = new JLabel("Titulo"));
@@ -101,5 +117,38 @@ public class CargarVideo extends JFrame {
         double height = screenSize.getHeight()/2;
         this.setLocation((int)width-this.getWidth()/2,(int)height-this.getHeight()/2);
 
+        aceptar.addActionListener(new ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent e)
+            {
+                
+                //Primero se crea una nueva libro con los datos
+                Integer id = Integer.parseInt(idTF.getText());
+            	String titulo = tituloTF.getText();
+                String tema=temas[temaTF.getSelectedIndex()];
+                Integer calificacion = Integer.parseInt(calificacionTF.getText());
+                Double costo = Double.parseDouble(costoTF.getText());
+                Date fecha = null;
+                try {
+                    fecha = format.parse(fechaTF.getText());
+                } catch (ParseException ex) {
+                    Logger.getLogger(CargarLibro.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //
+                Relevancia relevancia = Relevancia.ALTA;
+                switch(rel[relevanciaTF.getSelectedIndex()]) {
+                	case "ALTA": relevancia = Relevancia.ALTA; break;
+                	case "MEDIA": relevancia = Relevancia.MEDIA; break;
+                	case "BAJA": relevancia = Relevancia.BAJA; break;
+                }
+                Integer duracion = Integer.parseInt(duracionTF.getText());
+                
+                BibliotecaList.getInstance().agregar(new Video (id, titulo, costo, duracion, calificacion, fecha, relevancia, tema));
+                System.out.println(BibliotecaList.getInstance().materiales());
+                frame.dispose();
+                
+                
+            }
+        });
+        
     }
 }

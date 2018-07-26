@@ -59,7 +59,6 @@ public class MenuPrincipal extends JFrame {
         public void actionPerformed(java.awt.event.ActionEvent e)
         {
             CargarLibro c = new CargarLibro();
-            frame.dispose();
         }
         
     });
@@ -71,7 +70,6 @@ public class MenuPrincipal extends JFrame {
         public void actionPerformed(java.awt.event.ActionEvent e)
         {
             CargarVideo c = new CargarVideo();
-            frame.dispose();
         }
         
     });  
@@ -83,7 +81,6 @@ public class MenuPrincipal extends JFrame {
         public void actionPerformed(java.awt.event.ActionEvent e)
         {
             BuscarMaterial b = new BuscarMaterial();
-            frame.dispose();
         }
         
     });

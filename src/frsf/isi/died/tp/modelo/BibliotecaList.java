@@ -8,18 +8,26 @@ import java.util.function.Predicate;
 
 import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 import frsf.isi.died.tp.modelo.productos.Relevancia;
-import frsf.isi.died.tp.modelo.usuarios.Suscriptor;
 
 public class BibliotecaList implements Biblioteca {
 
 	private ArrayList<MaterialCapacitacion> materiales;
 	private Predicate<MaterialCapacitacion> esLibro = m -> m.esLibro();
 	private Predicate<MaterialCapacitacion> esVideo = m -> m.esVideo();
-
+	private static BibliotecaList instance=null;
+	
 	public BibliotecaList() {
 		this.materiales = new ArrayList<>();
 	}
 
+	public static BibliotecaList getInstance() {
+		
+		if(instance==null){
+            instance=new BibliotecaList();
+        }
+        return instance;
+	}
+	
 	@Override
 	public void agregar(MaterialCapacitacion material) {
 		this.materiales.add(material);
@@ -115,8 +123,7 @@ public class BibliotecaList implements Biblioteca {
 	}
 	
 	// ORDENAMIENTO DE LA LISTA.
-	public ArrayList<MaterialCapacitacion> ordenar (Orden ord){
-		ArrayList<MaterialCapacitacion> mats = (ArrayList<MaterialCapacitacion>)(this.materiales.clone());
+	public ArrayList<MaterialCapacitacion> ordenar (ArrayList<MaterialCapacitacion> mats, Orden ord){
 		switch(ord) {
 			case ALFABETICO: Collections.sort(mats, (a, b) -> a.getTitulo().compareToIgnoreCase(b.getTitulo())); break;
 			case PRECIO: Collections.sort(mats, (a, b) -> a.precio() < b.precio() ? -1 : a.precio() == b.precio() ? 0 : 1); break;

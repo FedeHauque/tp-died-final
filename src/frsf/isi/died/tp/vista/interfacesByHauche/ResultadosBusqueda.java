@@ -51,7 +51,7 @@ public class ResultadosBusqueda extends JFrame {
         tabla=new JTable(modelo);
         JScrollPane scroll = new JScrollPane();
         tabla.setModel(modelo);
-        tabla.setPreferredScrollableViewportSize(new Dimension(600,300));
+        tabla.setPreferredScrollableViewportSize(new Dimension(590,300));
         tabla.setFillsViewportHeight(true);
         tabla.setCellSelectionEnabled(false);
         tabla.setRowSelectionAllowed(true);
@@ -60,7 +60,7 @@ public class ResultadosBusqueda extends JFrame {
         tabla.getTableHeader().setReorderingAllowed(false);
         tabla.getColumnModel().getColumn(1).setPreferredWidth(12);
         tabla.getColumnModel().getColumn(2).setPreferredWidth(12);
-        tabla.getColumnModel().getColumn(3).setPreferredWidth(12);
+        tabla.getColumnModel().getColumn(3).setPreferredWidth(20);
         scroll.createVerticalScrollBar();
         panel.add(scroll);
         scroll.getViewport().add(tabla);
@@ -75,7 +75,7 @@ public class ResultadosBusqueda extends JFrame {
         double width = screenSize.getWidth()/2;
         double height = screenSize.getHeight()/2;
         this.setLocation((int)width-this.getWidth()/2,(int)height-this.getHeight()/2);
-//
+        //
         
     }
 }
