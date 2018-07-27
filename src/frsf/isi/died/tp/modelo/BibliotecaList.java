@@ -32,6 +32,10 @@ public class BibliotecaList implements Biblioteca {
 	public void agregar(MaterialCapacitacion material) {
 		this.materiales.add(material);
 	}
+	
+	public void eliminar(MaterialCapacitacion material) {
+		this.materiales.remove(material);
+	}
 
 	@Override
 	public Integer cantidadMateriales() {

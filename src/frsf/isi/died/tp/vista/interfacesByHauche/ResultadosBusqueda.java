@@ -3,13 +3,16 @@ package frsf.isi.died.tp.vista.interfacesByHauche;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
+import frsf.isi.died.tp.modelo.BibliotecaList;
 import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 import frsf.isi.died.tp.util.TablaNoEditable;
 
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -76,6 +79,26 @@ public class ResultadosBusqueda extends JFrame {
         double height = screenSize.getHeight()/2;
         this.setLocation((int)width-this.getWidth()/2,(int)height-this.getHeight()/2);
         //
+        
+        borrar.addActionListener(new ActionListener()
+        {
+            
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e)
+            {
+                int filas[] = tabla.getSelectedRows();
+                if(filas.length==1){
+                    //Se borra el elemento y se informa
+                    
+                    MaterialCapacitacion mcap = arm.get(filas[0]);
+                    BibliotecaList.getInstance().eliminar(mcap);
+                    
+                    JOptionPane.showMessageDialog(null, "Se borro con exito: "+mcap.getTitulo(), "Borrado exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    frame.dispose();
+                }
+            }
+        });
         
     }
 }
