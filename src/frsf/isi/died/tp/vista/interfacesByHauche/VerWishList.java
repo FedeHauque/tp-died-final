@@ -4,12 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Date;
+import java.util.PriorityQueue;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 import frsf.isi.died.tp.modelo.productos.WishList;
 
 public class VerWishList extends JFrame {
@@ -32,15 +34,17 @@ public class VerWishList extends JFrame {
         if(WishList.getInstance().isEmpty()) {
         	panel.add(new JLabel("    WishList Vacia!"));
         }else{
-        	while (WishList.getInstance().iterator().hasNext()){
-        		String titulo = WishList.getInstance().iterator().next().getTitulo();
-        		Date fecha = WishList.getInstance().iterator().next().getFechaPublicacion();
-        		String relevancia = WishList.getInstance().iterator().next().getRelevancia().name();
-        		Double precio = WishList.getInstance().iterator().next().precio();
-        		panel.add(new JLabel("    " + titulo + " -  FECHA:" + fecha.toString() + " - RELEVANCIA:" + relevancia + " - PRECIO:" + precio));
+        	PriorityQueue<MaterialCapacitacion> copia = new PriorityQueue(WishList.getInstance());
+        	MaterialCapacitacion m = copia.poll();
+        	while(m != null){
+        		String titulo = m.getTitulo();
+        		Date fecha = m.getFechaPublicacion();
+        		String relevancia = m.getRelevancia().name();
+        		Double precio = m.precio();
+        		panel.add(new JLabel("    " + titulo + "   -  RELEVANCIA:  " + relevancia + "   -   PRECIO:  " + precio));
+        		m = copia.poll();
         	}
         }
-        
         // poner ventana en el medio de la pantalla
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
