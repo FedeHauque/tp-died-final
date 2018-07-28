@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 public class MenuPrincipal extends JFrame {
 
-	private final JButton cargarLibro, cargarVideo, buscarPorDatos,buscarPorContenido;
+	private final JButton cargarLibro, cargarVideo, buscarPorDatos,buscarPorContenido, verWishList;
     private JPanel panel;
     private JFrame frame=this;
     
@@ -22,7 +22,7 @@ public class MenuPrincipal extends JFrame {
     	this.setTitle("Menu Principal - Biblioteca");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setSize(400,250);
+        this.setSize(400,300);
         this.setLayout(new BorderLayout());
         panel = new JPanel();
         this.setResizable(false);
@@ -38,11 +38,15 @@ public class MenuPrincipal extends JFrame {
         panel.add(buscarPorDatos=new JButton("Buscar material de capacitación"));
         panel.add(new JLabel(" "));
         panel.add(buscarPorContenido=new JButton("Buscar por contenido del material"));
+        panel.add(new JLabel(" "));
+        panel.add(verWishList=new JButton("Ver WishList"));
+
         
         cargarLibro.setAlignmentX(CENTER_ALIGNMENT);
         cargarVideo.setAlignmentX(CENTER_ALIGNMENT);
         buscarPorDatos.setAlignmentX(CENTER_ALIGNMENT);
         buscarPorContenido.setAlignmentX(CENTER_ALIGNMENT);
+        verWishList.setAlignmentX(CENTER_ALIGNMENT);
         
         // poner ventana en el medio de la pantalla
         
@@ -84,5 +88,17 @@ public class MenuPrincipal extends JFrame {
         }
         
     });
+    
+    verWishList.addActionListener(new ActionListener()
+    {
+        
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e)
+        {
+            VerWishList c = new VerWishList();
+        }
+        
+    });
+    
     }
 }

@@ -20,12 +20,12 @@ import javax.swing.JTable;
 
 public class ResultadosBusqueda extends JFrame {
 	private JPanel panel;
-    private JButton actualizar, borrar, asignarRelaciones, cargarContenido;
+    private JButton actualizar, borrar, asignarRelaciones, cargarContenido, agregarWish;
     private JTable tabla;
     private JFrame frame=this;
     
     public ResultadosBusqueda (ArrayList<MaterialCapacitacion> arm) {
-    	this.setSize(600,400);
+    	this.setSize(800,400);
         this.setTitle("Resultados");
         this.setResizable(false);
         panel = new JPanel();
@@ -55,7 +55,7 @@ public class ResultadosBusqueda extends JFrame {
         tabla=new JTable(modelo);
         JScrollPane scroll = new JScrollPane();
         tabla.setModel(modelo);
-        tabla.setPreferredScrollableViewportSize(new Dimension(590,300));
+        tabla.setPreferredScrollableViewportSize(new Dimension(790,300));
         tabla.setFillsViewportHeight(true);
         tabla.setCellSelectionEnabled(false);
         tabla.setRowSelectionAllowed(true);
@@ -73,6 +73,7 @@ public class ResultadosBusqueda extends JFrame {
         panel.add(borrar = new JButton("Eliminar material"));
         panel.add(asignarRelaciones = new JButton("Asignar relaciones"));
         panel.add(cargarContenido=new JButton("Cargar contenido"));
+        panel.add(agregarWish=new JButton("Agregar a WishList"));
         
       //centrar ventana
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -121,6 +122,22 @@ public class ResultadosBusqueda extends JFrame {
                         frame.dispose();
                     }
                     
+                }
+            }
+        });
+        
+        agregarWish.addActionListener(new ActionListener()
+        {
+            
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e)
+            {
+                int filas[] = tabla.getSelectedRows();
+                if(filas.length==1){
+                    //Se llama al frame para modificar
+                    MaterialCapacitacion mcap = arm.get(filas[0]);
+                    WishList.getInstance().add(mcap);
+                    JOptionPane.showMessageDialog(null, "Se ageregó con exito: "+mcap.getTitulo(), "Wishlist", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });
