@@ -8,6 +8,7 @@ package frsf.isi.died.tp.modelo.productos;
 import java.util.ArrayList.*;
 import java.util.Date;
 
+import frsf.isi.died.tp.estructuras.Arbol;
 import frsf.isi.died.tp.util.Ordenable;
 import java.util.Date.*;
 
@@ -27,6 +28,7 @@ public abstract class MaterialCapacitacion implements Ordenable,Comparable<Mater
 	protected Relevancia relevancia;
 	protected String tema;
 	protected Double pageRank;
+	protected Arbol contenido;
 	/**
 	 * Costo básico que debe sumarse al precio por el mero hecho de publicarlo en el
 	 * portal
