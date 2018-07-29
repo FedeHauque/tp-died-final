@@ -82,12 +82,13 @@ public class CargaContenido extends JFrame {
                             	ArrayList<String> atnString = new ArrayList();
 	                            String seleccionado= ((String)lista.getSelectedValue()).replaceAll("\\s", "").substring(5, 8);
 	                            switch(seleccionado) {
-	                            	case "TIT": atnString.add("Metadatos - Material"); atnString.add("Resumen"); atnString.add("Capitulos"); break;
-	                            	case "MEM":	atnString.add("Autor"); atnString.add("Editorial"); atnString.add("Fecha"); atnString.add("Palabras Clave");break;
-	                            	case "MEC": atnString.add("Sitio Web"); atnString.add("Ejercicios"); atnString.add("Palabaras Claves");break;
-	                            	case "SEC": atnString.add("Parrafo");break;
-	                            	case "CAP": atnString.add("Seccion"); atnString.add("Metadatos - Capitulo");break;
-	                            	case "RES": atnString.add("Parrafo");break;
+	                            	case "TIT": cb.setVisible(true);agregar.setVisible(true);if(!mcap.getArbol().hay(TipoNodo.MEM)) atnString.add("Metadatos - Material"); if(!mcap.getArbol().hay(TipoNodo.RESUMEN)) atnString.add("Resumen"); atnString.add("Capitulos"); break;
+	                            	case "MEM":	cb.setVisible(true);agregar.setVisible(true);atnString.add("Autor");if(!mcap.getArbol().hay(TipoNodo.EDITORIAL)) atnString.add("Editorial"); if(!mcap.getArbol().hay(TipoNodo.FECHA_PUBLICACION)) atnString.add("Fecha"); atnString.add("Palabras Clave");break;
+	                            	case "MEC": cb.setVisible(true);agregar.setVisible(true);if(!mcap.getArbol().hay(TipoNodo.SITIO))atnString.add("Sitio Web");if(!mcap.getArbol().hay(TipoNodo.EJERCICIOS)) atnString.add("Ejercicios"); atnString.add("Palabras Clave");break;
+	                            	case "SEC": cb.setVisible(true);agregar.setVisible(true);atnString.add("Parrafo");break;
+	                            	case "CAP": cb.setVisible(true);agregar.setVisible(true);atnString.add("Seccion");if(!mcap.getArbol().hay(TipoNodo.MEC)) atnString.add("Metadatos - Capitulo");break;
+	                            	case "RES": cb.setVisible(true);agregar.setVisible(true);atnString.add("Parrafo");break;
+	                            	default: cb.setVisible(false);agregar.setVisible(false);
 	                            }
 	                            ComboBoxModel cbm = new DefaultComboBoxModel(atnString.toArray());
 	
