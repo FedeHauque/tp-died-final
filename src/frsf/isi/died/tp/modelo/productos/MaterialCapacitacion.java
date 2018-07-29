@@ -44,6 +44,14 @@ public abstract class MaterialCapacitacion implements Ordenable,Comparable<Mater
 		this(0,"en desarrollo",0.0,0,null,null,null);
 	}
 
+	public ArbolContenido getArbol() {
+		return contenido;
+	}
+
+	public void setArbol(ArbolContenido contenido) {
+		this.contenido = contenido;
+	}
+
 	/**
 	 * Constructor que recibe como argumento un ID y un Titulo
 	 * 
@@ -68,6 +76,7 @@ public abstract class MaterialCapacitacion implements Ordenable,Comparable<Mater
 		this.fechaPublicacion = fechaPublicacion;
 		this.relevancia = relevancia;
 		this.tema = tema;
+		this.contenido = new ArbolContenido(titulo);
 	}
 
 	public Double getPageRank() {

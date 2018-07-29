@@ -142,5 +142,23 @@ public class ResultadosBusqueda extends JFrame {
             }
         });
         
+        cargarContenido.addActionListener(new ActionListener()
+        {
+            
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e)
+            {
+                int filas[] = tabla.getSelectedRows();
+                if(filas.length==1){
+                    //Se borra el elemento y se informa
+                    
+                    MaterialCapacitacion mcap = arm.get(filas[0]);
+                    CargaContenido c = new CargaContenido(mcap);
+                    
+                    frame.dispose();
+                }
+            }
+        });
+        
     }
 }
