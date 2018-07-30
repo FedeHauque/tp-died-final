@@ -100,5 +100,16 @@ public class MenuPrincipal extends JFrame {
         
     });
     
+    buscarPorContenido.addActionListener(new ActionListener()
+    {
+        
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent e)
+        {
+        	BuscarPorContenido c = new BuscarPorContenido();
+        }
+        
+    });
+    
     }
 }
