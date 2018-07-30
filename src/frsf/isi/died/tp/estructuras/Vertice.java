@@ -12,6 +12,7 @@ package frsf.isi.died.tp.estructuras;
 public class Vertice<T> {
 
         private T valor;
+        private Double pageRank = 1.0;
 	
 	public Vertice(){	}
 	 
@@ -58,6 +59,14 @@ public class Vertice<T> {
 	public String toString() {
 		return valor.toString();
 	}
+	
+	 public void setPR(Double pr){
+         this.pageRank=pr;
+     }
+	 
+	 public Double getPR(){
+         return pageRank;
+     }
 	
 	
 }

@@ -4,10 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.function.Predicate;
 
+import frsf.isi.died.tp.modelo.productos.Libro;
 import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 import frsf.isi.died.tp.modelo.productos.Relevancia;
+import frsf.isi.died.tp.modelo.productos.Video;
+import frsf.isi.died.tp.util.ComparadorTitulo;
+import frsf.isi.died.tp.estructuras.Grafo;
+import frsf.isi.died.app.dao.LibroDao;
+import frsf.isi.died.app.dao.VideoDao;
+
 
 public class BibliotecaList implements Biblioteca {
 
@@ -15,6 +24,7 @@ public class BibliotecaList implements Biblioteca {
 	private Predicate<MaterialCapacitacion> esLibro = m -> m.esLibro();
 	private Predicate<MaterialCapacitacion> esVideo = m -> m.esVideo();
 	private static BibliotecaList instance=null;
+	private HashMap<String,Grafo> grafosPorTema;
 	
 	public BibliotecaList() {
 		this.materiales = new ArrayList<>();
@@ -138,4 +148,102 @@ public class BibliotecaList implements Biblioteca {
 		return mats;
 	}
 	
+	//PERSISTENCIA DE DATOS
+	public void guardar(){
+	 
+		LibroDao DAO_L = new LibroDao();
+        VideoDao DAO_V = new VideoDao();
+	    ArrayList<Libro> libros = new ArrayList();
+	    ArrayList<Video> videos = new ArrayList();
+	    
+	    for(int i=0;i<materiales.size();i++){
+            
+            MaterialCapacitacion mc = materiales.get(i);
+                if(mc.getClass().isInstance(new Libro())){
+                    libros.add((Libro)mc);
+                }
+                else if(mc.getClass().isInstance(new Video())){
+                    videos.add((Video)mc);
+                }   
+        }
+        
+        DAO_L.guardarLista(libros);
+        DAO_V.guardarLista(videos);
+
+	}
+	
+	public void cargar(){
+	     
+        LibroDao DAO_L = new LibroDao();
+        VideoDao DAO_V = new VideoDao();
+        ArrayList<Libro> libros = (ArrayList<Libro>) DAO_L.cargarLista();
+        if(libros.isEmpty()) System.out.println("LIBROS_OK");
+        ArrayList<Video> videos = (ArrayList<Video>) DAO_V.cargarLista();
+        if(videos.isEmpty()) System.out.println("VIDEOS_OK");
+        
+        this.materiales.addAll(videos);
+        this.materiales.addAll(libros);
+    }
+	
+	
+    public ArrayList<MaterialCapacitacion> getListadoTema(MaterialCapacitacion m)
+    {
+        ArrayList<MaterialCapacitacion> salida = new ArrayList();
+        for(int i=0;i<materiales.size();i++) if(materiales.get(i).getTema().equals(m.getTema())) salida.add(materiales.get(i));
+        return salida;
+    }
+    
+    public ArrayList<MaterialCapacitacion> generar (String titulo, String tema, Integer califMin, Integer califMax, boolean libros, boolean videos) {
+        
+        ArrayList<MaterialCapacitacion> material=(ArrayList)this.ordenadaAlfabeticamente();
+        ArrayList<MaterialCapacitacion> materialFiltrado = new ArrayList();
+        
+        MaterialCapacitacion current;
+        for(int i=0;i<material.size();i++){
+            current=material.get(i);
+            
+            if((current.getTema().equals(tema) || tema.equals("Todos")) && current.getCalificacion()>=califMin && current.getCalificacion()<=califMax){
+                
+                if((libros && current.esLibro()) || (videos && current.esVideo())){
+                
+                    if(titulo.isEmpty()){
+                        materialFiltrado.add(current);
+                    }
+                    if(!titulo.isEmpty() && current.getTitulo().contains(titulo)){
+                        materialFiltrado.add(current);
+                    }
+                }
+            }
+            
+        }
+        
+        return materialFiltrado;
+    }
+	
+    
+    public List<MaterialCapacitacion> ordenadaAlfabeticamente()
+    {
+        Collections.sort(materiales,ComparadorTitulo.getInstance());
+        return materiales;
+    }
+    
+    public boolean containsGrafoTema (String tema){
+        
+        if(grafosPorTema.containsKey(tema)) return true;
+        else return false;
+        
+    }
+    
+    public Grafo getGrafoPorTema(String tema){
+        
+        return grafosPorTema.get(tema);
+        
+    }
+    
+    public void setGrafoPorTema(String tema, Grafo grafo){
+        
+        if(grafosPorTema.containsKey(tema)) grafosPorTema.replace(tema, grafo);
+        else grafosPorTema.put(tema, grafo);
+        
+    }
 }

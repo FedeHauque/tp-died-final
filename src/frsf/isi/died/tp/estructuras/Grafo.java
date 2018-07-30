@@ -16,11 +16,14 @@ import java.util.List;
 import java.util.Queue;
 
 import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
+import frsf.isi.died.tp.estructuras.Vertice;
+import frsf.isi.died.tp.estructuras.Arista;
 
 public class Grafo<T> {
 
 	protected List<Arista<T>> aristas;
 	protected List<Vertice<T>> vertices;
+	private ArrayList<ArrayList<Arista<T>>> caminos;
 
 	/**
 	 * 
@@ -150,6 +153,14 @@ public class Grafo<T> {
 		}
 		return res;
 	}
+	
+	public Integer gradoSalida(Vertice<T> vertice){
+		Integer res =0;
+		for(Arista<T> arista : this.aristas){
+			if(arista.getInicio().equals(vertice)) ++res;
+		}
+		return res;
+	}
         
 	/**
 	 * @param v1
@@ -272,4 +283,56 @@ public class Grafo<T> {
 				this.iterarPageRank();
 			}
     }
-}
+    
+    public ArrayList<Arista<T>> getAristas(){
+        return (ArrayList<Arista<T>>)aristas;
+    }
+    
+    public ArrayList<ArrayList<Arista<T>>> buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos){        
+        caminos=new ArrayList();
+        this.buscarCamino(n1, n2, saltos, new HashSet(),new ArrayList());
+        return caminos;
+         
+    }
+    
+    private void buscarCamino(Vertice<T> n1,Vertice<T> n2,Integer saltos,HashSet<Vertice> visitados,ArrayList<Arista<T>> camino)
+    {
+        if(n1==n2)
+        {
+            ArrayList<Arista<T>> c=new ArrayList();
+            c.addAll(camino);
+            caminos.add(c);
+            return;
+        }
+        if(saltos==0) return;
+        visitados.add(n1);
+        ArrayList<Vertice<T>> ady=(ArrayList)getAdyacentes(n1);
+        //System.out.println(n1+" "+ady.size());
+        for(int i=0;i<ady.size();i++)
+        {
+            if(!visitados.contains(ady.get(i)))
+            {
+                camino.add(new Arista(n1,ady.get(i)));
+                buscarCamino(ady.get(i),n2,saltos-1,visitados,camino);
+                camino.remove(camino.size()-1);
+            }
+        }
+        visitados.remove(n1);
+    }
+    
+    public ArrayList<Vertice<T>> getAdyacentesQueLeLlegan(Vertice<MaterialCapacitacion> vert){
+        
+        ArrayList<Vertice<T>> lista = new ArrayList();
+        
+        for(int i=0;i<aristas.size();i++){
+            
+            if(aristas.get(i).getFin()==vert){
+                lista.add(aristas.get(i).getInicio());
+            }
+            
+        }
+        
+        return lista;
+    
+    }
+}    

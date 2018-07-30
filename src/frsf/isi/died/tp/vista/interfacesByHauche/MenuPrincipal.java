@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import frsf.isi.died.tp.modelo.BibliotecaList;
 
 
 public class MenuPrincipal extends JFrame {
@@ -20,6 +24,9 @@ public class MenuPrincipal extends JFrame {
     
     public MenuPrincipal(){
     	this.setTitle("Menu Principal - Biblioteca");
+    	
+    	BibliotecaList.getInstance().cargar();
+    	
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setSize(400,300);
@@ -109,6 +116,14 @@ public class MenuPrincipal extends JFrame {
         	BuscarPorContenido c = new BuscarPorContenido();
         }
         
+    });
+    
+    this.addWindowListener(new WindowAdapter(){
+        @Override
+        public void windowClosing(WindowEvent e){
+
+            BibliotecaList.getInstance().guardar();
+        }
     });
     
     }
