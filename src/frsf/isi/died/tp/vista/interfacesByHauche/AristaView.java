@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package isi.died.tp.vista;
+package frsf.isi.died.tp.vista.interfacesByHauche;
 
-import isi.died.tp.estructuras.grafo.Arista;
-import isi.died.tp.modelo.MaterialCapacitacion;
+import frsf.isi.died.tp.estructuras.Arista;
+import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;

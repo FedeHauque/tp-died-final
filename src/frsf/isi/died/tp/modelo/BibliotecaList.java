@@ -28,6 +28,7 @@ public class BibliotecaList implements Biblioteca {
 	
 	public BibliotecaList() {
 		this.materiales = new ArrayList<>();
+		this.grafosPorTema= new HashMap();
 	}
 
 	public static BibliotecaList getInstance() {
