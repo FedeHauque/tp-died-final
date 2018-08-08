@@ -4,13 +4,13 @@ import frsf.isi.died.tp.estructuras.Arista;
 import frsf.isi.died.tp.estructuras.Grafo;
 import frsf.isi.died.tp.estructuras.Vertice;
 import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
+import frsf.isi.died.tp.vista.interfaces.grafos.AristaGUI;
+import frsf.isi.died.tp.vista.interfaces.grafos.Controles;
+import frsf.isi.died.tp.vista.interfaces.grafos.GrafoGUI;
+import frsf.isi.died.tp.vista.interfaces.grafos.VerticeGUI;
 import frsf.isi.died.tp.modelo.productos.Libro;
 import frsf.isi.died.tp.modelo.BibliotecaList;
-//import frsf.isi.died.tp.util.Ordenador;
-import frsf.isi.died.tp.vista.interfacesByHauche.AristaView;
-import frsf.isi.died.tp.vista.interfacesByHauche.ControlPanel;
-import frsf.isi.died.tp.vista.interfacesByHauche.GrafoPanel;
-import frsf.isi.died.tp.vista.interfacesByHauche.VerticeView;
+
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,10 +31,10 @@ public class GrafoController {
     
     private static Integer _GENERADOR_ID=1;
     private Grafo<MaterialCapacitacion> grafo, grafoPrev;
-    private GrafoPanel vistaGrafo;
-    private ControlPanel vistaControl;
-    private Map<Vertice<MaterialCapacitacion>,VerticeView> vertices;
-    private Map<Arista<MaterialCapacitacion>,AristaView> aristas;
+    private GrafoGUI vistaGrafo;
+    private Controles vistaControl;
+    private Map<Vertice<MaterialCapacitacion>,VerticeGUI> vertices;
+    private Map<Arista<MaterialCapacitacion>,AristaGUI> aristas;
     private ArrayList<ArrayList<Arista<MaterialCapacitacion>>> caminos;
     private HashMap<Vertice<MaterialCapacitacion>,Integer> pageRank;
     private int idxCaminos;
@@ -42,12 +42,12 @@ public class GrafoController {
 
     
     
-    public GrafoController(GrafoPanel panelGrf,ControlPanel panelCtrl,ArrayList<MaterialCapacitacion> amc) {
+    public GrafoController(GrafoGUI panelGrf,Controles panelCtrl,ArrayList<MaterialCapacitacion> amc) {
         this.vistaGrafo = panelGrf;
         this.vistaControl = panelCtrl;
         grafo= new Grafo<MaterialCapacitacion>();
-        this.vertices = new LinkedHashMap<Vertice<MaterialCapacitacion>,VerticeView>();
-        this.aristas = new LinkedHashMap<Arista<MaterialCapacitacion>,AristaView>();
+        this.vertices = new LinkedHashMap<Vertice<MaterialCapacitacion>,VerticeGUI>();
+        this.aristas = new LinkedHashMap<Arista<MaterialCapacitacion>,AristaGUI>();
         this.tema=amc.get(0).getTema();
         this.grafoPrev= new Grafo<MaterialCapacitacion>();
         
@@ -74,9 +74,9 @@ public class GrafoController {
         
         for(int g=0;g<grafoPrev.getAristas().size();g++){
             
-            AristaView view= new AristaView();
-            VerticeView origen = vertices.get(grafoPrev.getAristas().get(g).getInicio());
-            VerticeView destino= vertices.get(grafoPrev.getAristas().get(g).getFin());
+            AristaGUI view= new AristaGUI();
+            VerticeGUI origen = vertices.get(grafoPrev.getAristas().get(g).getInicio());
+            VerticeGUI destino= vertices.get(grafoPrev.getAristas().get(g).getFin());
             view.setOrigen(origen);
             view.setDestino(destino);
             
@@ -95,7 +95,7 @@ public class GrafoController {
         MaterialCapacitacion m = new Libro(_GENERADOR_ID++,titulo);
         Vertice v1 = new Vertice(m);
         grafo.addNodo(v1);        
-        VerticeView v = new VerticeView(coordenadaX, coordenadaY, color);
+        VerticeGUI v = new VerticeGUI(coordenadaX, coordenadaY, color);
         v.setVertice(v1);
         this.vistaGrafo.agregar(v);
         this.vertices.put(v1, v);
@@ -104,16 +104,16 @@ public class GrafoController {
     }
     
 
-    public void crearArista(AristaView arista){
+    public void crearArista(AristaGUI arista){
         if(arista.getOrigen()==null || arista.getDestino()==null) return;
         //System.out.println(arista+" "+arista.getOrigen().getVertice());
         if(arista.getOrigen().getVertice()==arista.getDestino().getVertice()) return;
         
-        List<AristaView> aristasView = new ArrayList<AristaView>(aristas.values());
+        List<AristaGUI> aristasView = new ArrayList<AristaGUI>(aristas.values());
         
         for(int k=0;k<aristas.size();k++){
         
-            if( (((AristaView)(aristasView.get(k))).getOrigen()==arista.getOrigen()) && (((AristaView)(aristasView.get(k))).getDestino()==arista.getDestino())){
+            if( (((AristaGUI)(aristasView.get(k))).getOrigen()==arista.getOrigen()) && (((AristaGUI)(aristasView.get(k))).getDestino()==arista.getDestino())){
                 return;
             }
         
@@ -130,7 +130,7 @@ public class GrafoController {
         Iterator ite = aristas.entrySet().iterator();
         
         while(ite.hasNext()){
-            ((Map.Entry<Arista<MaterialCapacitacion>,AristaView>) ite.next()).getValue().resetColor();
+            ((Map.Entry<Arista<MaterialCapacitacion>,AristaGUI>) ite.next()).getValue().resetColor();
         }
         this.vistaGrafo.repaint();
     }
@@ -154,8 +154,8 @@ public class GrafoController {
     
     public String temaGrafo(){ return tema;}
     
-    public GrafoPanel getGrafoPanel(){return this.vistaGrafo;}
-    public ControlPanel getControlpanel(){return this.vistaControl;}
+    public GrafoGUI getGrafoPanel(){return this.vistaGrafo;}
+    public Controles getControlpanel(){return this.vistaControl;}
     
     public boolean siguienteCamino()
     {
