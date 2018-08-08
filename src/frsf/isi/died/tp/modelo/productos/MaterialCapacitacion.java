@@ -37,9 +37,7 @@ public abstract class MaterialCapacitacion implements Ordenable,Comparable<Mater
 	protected Double costo;
 	
 
-	/**
-	 * Constructor por defecto
-	 */
+	
 	public MaterialCapacitacion() {
 		this(0,"en desarrollo",0.0,0,null,null,null);
 	}
