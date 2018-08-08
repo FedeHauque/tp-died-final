@@ -1,18 +1,1 @@
-[
-  {
-    "precioCompra": 750.0,
-    "paginas": 205,
-    "id": 1,
-    "titulo": "Los 3 Cerditos Feminazis",
-    "calificacion": 80,
-    "fechaPublicacion": "Aug 12, 2001 12:00:00 AM",
-    "relevancia": "MEDIA",
-    "tema": "Psicología y Educación",
-    "contenido": {
-      "contenido": "Los 3 Cerditos Feminazis",
-      "tipo": "TITULO",
-      "hijos": []
-    },
-    "costo": 750.0
-  }
-]
+[]
