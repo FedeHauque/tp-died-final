@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.vista.interfaces.busquedas;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -36,7 +37,7 @@ public class ResultadosBusqueda extends JFrame {
         panel.setVisible(true);
         this.getContentPane().add(panel);
         panel.setLayout(new FlowLayout());
-        
+        panel.setBackground(new java.awt.Color(255,255,204));
         //TABLA
         
         TablaNoEditable modelo = new TablaNoEditable();
@@ -72,11 +73,16 @@ public class ResultadosBusqueda extends JFrame {
         panel.add(scroll);
         scroll.getViewport().add(tabla);
         
-        panel.add(actualizar = new JButton("Modificar material"));
-        panel.add(borrar = new JButton("Eliminar material"));
-        panel.add(asignarRelaciones = new JButton("Asignar relaciones"));
-        panel.add(cargarContenido=new JButton("Cargar contenido"));
+        panel.add(actualizar = new JButton("Modificar Material"));
+        panel.add(borrar = new JButton("Eliminar Material"));
+        panel.add(asignarRelaciones = new JButton("Asignar Relaciones"));
+        panel.add(cargarContenido=new JButton("Cargar Contenido"));
         panel.add(agregarWish=new JButton("Agregar a WishList"));
+        actualizar.setBackground(Color.ORANGE);
+        borrar.setBackground(Color.ORANGE);
+        asignarRelaciones.setBackground(Color.ORANGE);
+        cargarContenido.setBackground(Color.ORANGE);
+        agregarWish.setBackground(Color.ORANGE);
         
       //centrar ventana
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

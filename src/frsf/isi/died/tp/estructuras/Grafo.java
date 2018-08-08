@@ -23,6 +23,15 @@ public class Grafo<T> {
 
 	protected List<Arista<T>> aristas;
 	protected List<Vertice<T>> vertices;
+	
+	public List<Vertice<T>> getVertices() {
+		return vertices;
+	}
+
+	public void setVertices(List<Vertice<T>> vertices) {
+		this.vertices = vertices;
+	}
+
 	private ArrayList<ArrayList<Arista<T>>> caminos;
 
 	/**

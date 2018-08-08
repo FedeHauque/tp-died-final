@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.vista.interfaces.abm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -44,25 +45,25 @@ public class ModificarVideo extends JFrame {
         this.setVisible(true);
         panel.setVisible(true);
         panel.setLayout(new BoxLayout (panel, BoxLayout.Y_AXIS));
-        
-        panel.add(idL = new JLabel("ID del Video = " + v.getId()));
+        panel.setBackground(new java.awt.Color(255,255,204));
+        panel.add(idL = new JLabel(" ID del Video : " + v.getId()));
         panel.add(new JLabel(" "));
         
-        panel.add(tituloL = new JLabel("Titulo"));
+        panel.add(tituloL = new JLabel(" Título"));
         panel.add(tituloTF = new JTextField(v.getTitulo()));
         tituloTF.setAlignmentX(LEFT_ALIGNMENT);
         tituloTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(costoL = new JLabel("Costo ($)"));
+        panel.add(costoL = new JLabel(" Costo (en AR$)"));
         panel.add(costoTF = new JTextField(v.getCosto().toString()));
         costoTF.setAlignmentX(LEFT_ALIGNMENT);
         costoTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(calificacionL = new JLabel("Calificación (1-100)"));
+        panel.add(calificacionL = new JLabel(" Calificación (1-100)"));
         panel.add(calificacionTF = new JFormattedTextField(v.getCalificacion()));
         calificacionTF.setAlignmentX(LEFT_ALIGNMENT);
         calificacionTF.setMaximumSize(new Dimension(300,25));
@@ -71,7 +72,7 @@ public class ModificarVideo extends JFrame {
         
         // Fecha
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        panel.add(fechaL = new JLabel("Fecha (dd-mm-aaaa)"));
+        panel.add(fechaL = new JLabel(" Fecha (dd-mm-aaaa)"));
         panel.add(fechaTF = new JFormattedTextField(format));
         fechaTF.setAlignmentX(LEFT_ALIGNMENT);
         fechaTF.setMaximumSize(new Dimension(300,25));
@@ -81,7 +82,7 @@ public class ModificarVideo extends JFrame {
         panel.add(new JLabel(" "));
         
         String[] rel = {"ALTA", "MEDIA", "BAJA"};
-        panel.add(relevanciaL = new JLabel("Relevancia"));
+        panel.add(relevanciaL = new JLabel(" Relevancia"));
         panel.add(relevanciaTF = new JComboBox(rel));
         relevanciaTF.setAlignmentX(LEFT_ALIGNMENT);
         relevanciaTF.setMaximumSize(new Dimension(300,25));
@@ -93,12 +94,12 @@ public class ModificarVideo extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        String[] temas = {"Albañileria", "Ocultismo", "Economía", "Politica", "Programación", "Periodismo"};
-        panel.add(temaL = new JLabel("Tema"));
+        String[] temas = {"Administración y Economía", "Agronomía", "Arquitectura y Albañilería", "Autoayuda", "Ciencias Naturales y Biología", "Ciencias Sociales y Filosofía", "Computación e Informática", "Ficción", "Historia, Arte y Geografía", "Lengua y Literatura", "Matemática, Física y Química", "Música",  "Política", "Psicología y Educación", "Religión", "Tecnología", "Turismo, Gastronomía y Deportes"};
+        panel.add(temaL = new JLabel(" Tema"));
         panel.add(temaTF = new JComboBox(temas));
         temaTF.setAlignmentX(LEFT_ALIGNMENT);
         temaTF.setMaximumSize(new Dimension(300,25));
-        for(int i=0; i<6; i++) {
+        for(int i=0; i<17; i++) {
         	if(temas[i].equals(v.getTema())) {
         		temaTF.setSelectedIndex(i);
         	}
@@ -107,7 +108,7 @@ public class ModificarVideo extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        panel.add(duracionL = new JLabel("Duracion"));
+        panel.add(duracionL = new JLabel(" Duración (en segundos)"));
         panel.add(duracionTF = new JTextField());
         duracionTF.setAlignmentX(LEFT_ALIGNMENT);
         duracionTF.setMaximumSize(new Dimension(300,25));
@@ -115,7 +116,8 @@ public class ModificarVideo extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        panel.add(aceptar = new JButton("Aceptar"));
+        panel.add(aceptar = new JButton("Aceptar y Actualizar"));
+        aceptar.setBackground(Color.ORANGE);
         
         // poner ventana en el medio
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

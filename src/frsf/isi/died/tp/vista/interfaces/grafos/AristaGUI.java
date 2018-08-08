@@ -56,7 +56,7 @@ public class AristaGUI {
 
     public void setHighlighted(GrafoGUI gp){
         gp.quitar(this);
-        this.color=Color.RED;
+        this.color=Color.GREEN;
         gp.agregar(this);
         
     }

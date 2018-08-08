@@ -94,29 +94,29 @@ public class CargarLibro extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        String[] temas = {"Albañileria", "Ocultismo", "Economía", "Politica", "Programación", "Periodismo"};
-        panel.add(temaL = new JLabel("Tema"));
+        String[] temas = {"Administración y Economía", "Agronomía", "Arquitectura y Albañilería", "Autoayuda", "Ciencias Naturales y Biología", "Ciencias Sociales y Filosofía", "Computación e Informática", "Ficción", "Historia, Arte y Geografía", "Lengua y Literatura", "Matemática, Física y Química", "Música", "Política", "Psicología y Educación", "Religión", "Tecnología", "Turismo, Gastronomía y Deportes"};
+        panel.add(temaL = new JLabel(" Tema"));
         panel.add(temaTF = new JComboBox(temas));
         temaTF.setAlignmentX(LEFT_ALIGNMENT);
         temaTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(paginasL = new JLabel("Cantidad de paginas"));
+        panel.add(paginasL = new JLabel(" Cantidad de Páginas"));
         panel.add(paginasTF = new JTextField());
         paginasTF.setAlignmentX(LEFT_ALIGNMENT);
         paginasTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(precioCompraL = new JLabel("Precio compra ($)"));
+        panel.add(precioCompraL = new JLabel(" Precio de Compra (en AR$)"));
         panel.add(precioCompraTF = new JTextField());
         precioCompraTF.setAlignmentX(LEFT_ALIGNMENT);
         precioCompraTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(aceptar = new JButton("Aceptar"));
+        panel.add(aceptar = new JButton("Aceptar y Guardar"));
         aceptar.setBackground(Color.ORANGE);
       
         // poner ventana en el medio

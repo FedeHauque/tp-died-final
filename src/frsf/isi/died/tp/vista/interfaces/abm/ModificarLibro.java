@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.vista.interfaces.abm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -35,7 +36,7 @@ public class ModificarLibro extends JFrame {
     
     public ModificarLibro(Libro l) {
     	super("Modificar Libro");
-    	this.setSize(300, 550);
+    	this.setSize(300, 540);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         panel=new JPanel();
@@ -43,25 +44,25 @@ public class ModificarLibro extends JFrame {
         this.setVisible(true);
         panel.setVisible(true);
         panel.setLayout(new BoxLayout (panel, BoxLayout.Y_AXIS));
-        
-        panel.add(idL = new JLabel("ID del Libro = " + l.getId()));
+        panel.setBackground(new java.awt.Color(255,255,204));
+        panel.add(idL = new JLabel(" ID del Libro : " + l.getId()));
         panel.add(new JLabel(" "));
         
-        panel.add(tituloL = new JLabel("Titulo"));
+        panel.add(tituloL = new JLabel(" Titulo"));
         panel.add(tituloTF = new JTextField(l.getTitulo()));
         tituloTF.setAlignmentX(LEFT_ALIGNMENT);
         tituloTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(costoL = new JLabel("Costo ($)"));
+        panel.add(costoL = new JLabel(" Costo (en AR$)"));
         panel.add(costoTF = new JTextField(l.getCosto().toString()));
         costoTF.setAlignmentX(LEFT_ALIGNMENT);
         costoTF.setMaximumSize(new Dimension(300,25));
         
         panel.add(new JLabel(" "));
         
-        panel.add(calificacionL = new JLabel("Calificación (1-100)"));
+        panel.add(calificacionL = new JLabel(" Calificación (1-100)"));
         panel.add(calificacionTF = new JFormattedTextField(l.getCalificacion()));
         calificacionTF.setAlignmentX(LEFT_ALIGNMENT);
         calificacionTF.setMaximumSize(new Dimension(300,25));
@@ -70,7 +71,7 @@ public class ModificarLibro extends JFrame {
         
         // Fecha
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        panel.add(fechaL = new JLabel("Fecha (dd-mm-aaaa)"));
+        panel.add(fechaL = new JLabel(" Fecha (dd-mm-aaaa)"));
         panel.add(fechaTF = new JFormattedTextField(format));
         fechaTF.setAlignmentX(LEFT_ALIGNMENT);
         fechaTF.setMaximumSize(new Dimension(300,25));
@@ -80,7 +81,7 @@ public class ModificarLibro extends JFrame {
         panel.add(new JLabel(" "));
         
         String[] rel = {"ALTA", "MEDIA", "BAJA"};
-        panel.add(relevanciaL = new JLabel("Relevancia"));
+        panel.add(relevanciaL = new JLabel(" Relevancia"));
         panel.add(relevanciaTF = new JComboBox(rel));
         relevanciaTF.setAlignmentX(LEFT_ALIGNMENT);
         relevanciaTF.setMaximumSize(new Dimension(300,25));
@@ -92,12 +93,12 @@ public class ModificarLibro extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        String[] temas = {"Albañileria", "Ocultismo", "Economía", "Politica", "Programación", "Periodismo"};
-        panel.add(temaL = new JLabel("Tema"));
+        String[] temas = {"Administración y Economía", "Agronomía", "Arquitectura y Albañilería", "Autoayuda", "Ciencias Naturales y Biología", "Ciencias Sociales y Filosofía", "Computación e Informática", "Ficción", "Historia, Arte y Geografía", "Lengua y Literatura", "Matemática, Física y Química", "Música",  "Política", "Psicología y Educación", "Religión", "Tecnología", "Turismo, Gastronomía y Deportes"};
+        panel.add(temaL = new JLabel(" Tema"));
         panel.add(temaTF = new JComboBox(temas));
         temaTF.setAlignmentX(LEFT_ALIGNMENT);
         temaTF.setMaximumSize(new Dimension(300,25));
-        for(int i=0; i<6; i++) {
+        for(int i=0; i<17; i++) {
         	if(temas[i].equals(l.getTema())) {
         		temaTF.setSelectedIndex(i);
         	}
@@ -105,7 +106,7 @@ public class ModificarLibro extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        panel.add(paginasL = new JLabel("Cantidad de paginas"));
+        panel.add(paginasL = new JLabel(" Cantidad de Páginas"));
         panel.add(paginasTF = new JTextField());
         paginasTF.setAlignmentX(LEFT_ALIGNMENT);
         paginasTF.setMaximumSize(new Dimension(300,25));
@@ -113,7 +114,7 @@ public class ModificarLibro extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        panel.add(precioCompraL = new JLabel("Precio compra ($)"));
+        panel.add(precioCompraL = new JLabel(" Precio de Compra (en AR$)"));
         panel.add(precioCompraTF = new JTextField());
         precioCompraTF.setAlignmentX(LEFT_ALIGNMENT);
         precioCompraTF.setMaximumSize(new Dimension(300,25));
@@ -121,7 +122,8 @@ public class ModificarLibro extends JFrame {
         
         panel.add(new JLabel(" "));
         
-        panel.add(aceptar = new JButton("Aceptar"));
+        panel.add(aceptar = new JButton("Aceptar y Actualizar"));
+        aceptar.setBackground(Color.ORANGE);
         
         // poner ventana en el medio
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

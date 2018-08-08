@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.vista.interfaces.busquedas;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -27,7 +28,7 @@ public class BuscarPorContenido extends JFrame {
 	    
 	    public BuscarPorContenido(){
 	        
-	        this.setTitle("Buscar por contenido");
+	        this.setTitle("Buscar por Contenido");
 	        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	        this.setVisible(true);
 	        this.setSize(275,430);
@@ -36,6 +37,7 @@ public class BuscarPorContenido extends JFrame {
 	        panel.setVisible(true);
 	        this.getContentPane().add(panel);
 	        panel.setLayout(new BoxLayout (panel, BoxLayout.Y_AXIS));
+	        panel.setBackground(new java.awt.Color(255,255,204));
 	        //centrar ventana
 	                Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	                double width = screenSize.getWidth()/2;
@@ -45,47 +47,47 @@ public class BuscarPorContenido extends JFrame {
 	        panel.add(block=new JLabel(" "));
 	        block.setAlignmentX(RIGHT_ALIGNMENT);
 	        
-	        panel.add(tituloL = new JLabel("Titulo"));
+	        panel.add(tituloL = new JLabel(" Titulo"));
 	        panel.add(tituloTF = new JTextField());
 	        tituloTF.setAlignmentX(LEFT_ALIGNMENT);
 	        tituloTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(autorL = new JLabel("Autor"));
+	        panel.add(autorL = new JLabel(" Autor"));
 	        panel.add(autorTF = new JTextField());
 	        autorTF.setAlignmentX(LEFT_ALIGNMENT);
 	        autorTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(editorialL = new JLabel("Editorial"));
+	        panel.add(editorialL = new JLabel(" Editorial"));
 	        panel.add(editorialTF = new JTextField());
 	        editorialTF.setAlignmentX(LEFT_ALIGNMENT);
 	        editorialTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(fechaL = new JLabel("Fecha de publicacion"));
+	        panel.add(fechaL = new JLabel(" Fecha de Publicación"));
 	        panel.add(fechaTF = new JTextField());
 	        fechaTF.setAlignmentX(LEFT_ALIGNMENT);
 	        fechaTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(pcL = new JLabel("Palabra clave"));
+	        panel.add(pcL = new JLabel(" Palabra Clave"));
 	        panel.add(pcTF = new JTextField());
 	        pcTF.setAlignmentX(LEFT_ALIGNMENT);
 	        pcTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(parrafoL = new JLabel("Parrafo"));
+	        panel.add(parrafoL = new JLabel(" Párrafo"));
 	        panel.add(parrafoTF = new JTextField());
 	        parrafoTF.setAlignmentX(LEFT_ALIGNMENT);
 	        parrafoTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(capituloL = new JLabel("Capitulo"));
+	        panel.add(capituloL = new JLabel(" Capítulo"));
 	        panel.add(capituloTF = new JTextField());
 	        capituloTF.setAlignmentX(LEFT_ALIGNMENT);
 	        capituloTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(secL = new JLabel("Seccion"));
+	        panel.add(secL = new JLabel(" Sección"));
 	        panel.add(secTF = new JTextField());
 	        secTF.setAlignmentX(LEFT_ALIGNMENT);
 	        secTF.setMaximumSize(new Dimension(250,25));
 	        
-	        panel.add(webL = new JLabel("Sitio Web"));
+	        panel.add(webL = new JLabel(" Sitio Web"));
 	        panel.add(webTF = new JTextField());
 	        webTF.setAlignmentX(LEFT_ALIGNMENT);
 	        webTF.setMaximumSize(new Dimension(250,25));
@@ -93,8 +95,8 @@ public class BuscarPorContenido extends JFrame {
 	        
 	        panel.add(new JLabel(" "));
 	        
-	        panel.add(buscar = new JButton("Buscar"));
-	        
+	        panel.add(buscar = new JButton("Buscar Resultados"));
+	        buscar.setBackground(Color.ORANGE);
 	        buscar.addActionListener(new ActionListener()
 	        {
 	            

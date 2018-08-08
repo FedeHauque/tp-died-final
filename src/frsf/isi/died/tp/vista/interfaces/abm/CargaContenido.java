@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.vista.interfaces.abm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -46,6 +47,8 @@ public class CargaContenido extends JFrame {
         this.getContentPane().add(panel);
         this.setLayout(new FlowLayout());
         panel.setLayout(new FlowLayout());
+        panel.setBackground(new java.awt.Color(255,255,204));
+        this.getContentPane().setBackground(new java.awt.Color(255,255,204));
         
          //centrar ventana
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -70,6 +73,7 @@ public class CargaContenido extends JFrame {
               //Boton
                 this.add(agregar=new JButton("Agregar"));
                 agregar.setMaximumSize(new Dimension(50,20));
+                agregar.setBackground(Color.ORANGE);
     
                 lista.addListSelectionListener(new ListSelectionListener(){
                     

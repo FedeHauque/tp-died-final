@@ -21,7 +21,7 @@ public class VerWishList extends JFrame {
     public VerWishList() {
     	this.setTitle("Ver Wish List");
         this.setVisible(true);
-        this.setSize(400,300);
+        this.setSize(600,250);
         this.setLayout(new BorderLayout());
         panel = new JPanel();
         this.setResizable(false);

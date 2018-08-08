@@ -1,14 +1,21 @@
 package frsf.isi.died.tp.vista.interfaces.grafos;
 
 import frsf.isi.died.app.controller.GrafoController;
+import frsf.isi.died.tp.estructuras.Grafo;
+import frsf.isi.died.tp.estructuras.Vertice;
+import frsf.isi.died.tp.modelo.productos.MaterialCapacitacion;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 
@@ -19,11 +26,18 @@ import javax.swing.JOptionPane;
 public class Controles extends JPanel {
     
     private GrafoController controller;
-    private JTextField verticeOrigen,verticeDestino,cantSaltos;
+	private JTextField verticeDestino,cantSaltos, verticeOrigen;
     private JButton b1, siguiente, pageRank;
 
     public Controles(){
         verticeOrigen = new JTextField();
+        /*Grafo a = controller.getGrafo();
+    	List<Vertice> lista =  a.getVertices();
+    	ArrayList<String> lista2 = new ArrayList<String>();
+        for(Vertice v : lista) {
+    		lista2.add(((MaterialCapacitacion) v.getValor()).getTitulo());
+    	}
+        verticeOrigen = new JComboBox(lista2.toArray());*/
         verticeDestino = new JTextField();
         cantSaltos = new JTextField();
         verticeOrigen.setColumns(10);
